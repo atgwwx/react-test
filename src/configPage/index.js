@@ -49,34 +49,33 @@ class ConfigPage extends React.Component {
         let ConfigComponent = configComponentMap[currentType];
         return <Layout className="config-page">
             <Header>
-                <div className="page-title">搭建平台</div>
+                <div className="page-title">表单搭建平台</div>
                 <Menu
                     theme="dark"
                     mode="horizontal"
                     onClick={this.menuHandleClick} selectedKeys={[currentMenuKey]}
                     style={{ lineHeight: '64px' }}
                 >
-                    <Menu.Item key="home">首页</Menu.Item>
-                    <SubMenu
-                        title={
-                            <span className="submenu-title-wrapper">插入</span>
-                        }
-                    >
-                        <Menu.Item key="input">Input</Menu.Item>
-                        <Menu.Item key="select">Select</Menu.Item>
-                        <Menu.Item key="textarea">TextArea</Menu.Item>
-                        <Menu.Item key="button">Button</Menu.Item>
-                    </SubMenu>
                 </Menu>
             </Header>
             <Content>
                 <div className="content">
+                    <div className="components-panel">
+                        <div className="panel-title">组件</div>
+                        <div className="components">
+                         <Button type="primary" onClick={()=>{this.addComponent('input')}} className="component-item">Input</Button>
+                         <Button type="primary" onClick={()=>{this.addComponent('select')}} className="component-item">Select</Button>
+                         <Button type="primary" className="component-item">TextArea</Button>
+                         <Button type="primary" className="component-item">Button</Button>
+
+                        </div>
+                    </div>
                     <div className="display-panel">
-                        <div className="panel-title">新建表单</div>
+                        <div className="panel-title">预览区域</div>
                         {components.map(Item => <Item />)}
                     </div>
                     <div className="configuration-panel">
-                        <div className="panel-title">配置{currentType}</div>
+                        <div className="panel-title">组件配置：{currentType}</div>
                         {ConfigComponent ? <ConfigComponent /> : null}
                     </div>
 

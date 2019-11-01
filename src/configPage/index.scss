@@ -10,28 +10,44 @@
     .content {
         display: flex;
         min-height: 540px;
+        .components-panel {
+            width:240px;
+            background: rgb(28, 31, 53);
+            padding: 0 20px;
+            .components {
+                display: flex;
+                flex-wrap: wrap;
+                .component-item {
+                    width:80px;
+                    margin: 20px 20px 0 0;
+                }
+            }
+        }
         .display-panel {
-            height: 500px;
-            height: 100%;;
-            padding:0 50px 40px ;
             flex: 1;
             box-sizing:border-box;
-          
+            background: rgb(50, 52, 92);
+            padding: 0 20px;
+            text-align:center;
         }
         .configuration-panel {
-            width:500px;
-            border-left: 1px dotted #666;
-            padding:0 50px;
+            width:360px;
+            background: rgb(28, 31, 53);
+            padding: 0 20px;
         }
     }
     .panel-title {
         font-size: 16px;
-        color:#000;
-        margin-top:20px;
+        color:#FFF;
+        padding:20px 0;
         font-weight: bold;
     }
     .field-item {
         margin-top:10px;
     }
-    
+    .ant-form-item-label {
+        label {
+            color: #fff;
+        }
+    }
 }
