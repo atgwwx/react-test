@@ -12,7 +12,6 @@
             float: right;
         }
     }
-    
     .content {
         display: flex;
         min-height: 540px;
@@ -35,6 +34,12 @@
             background: rgb(50, 52, 92);
             padding: 0 20px;
             text-align:center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .form-wrapper {
+                width:500px;
+            }
         }
         .configuration-panel {
             width:360px;

@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { Select } from 'antd';
+import { Select, Form } from 'antd';
 const { Option } = Select;
 
 function MySelect(props) {
-    let {options=[]} = props;
-    return <div><Select  className="form-item">
-       { options.map((item,index) => {
+    let { options = [] } = props;
+    return <Form.Item label="下拉框"><Select>
+        {options.map((item, index) => {
             return <Option value={item.value} key={index}>{item.name}</Option>
         })}
-    </Select></div>
+    </Select></Form.Item>
 }
 export default MySelect;

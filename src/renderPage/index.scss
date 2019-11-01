@@ -1,0 +1,15 @@
+.render-page {
+    background: rgb(50, 52, 92);
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    min-height: 660px;
+    .form-wrapper {
+        width:500px;
+    }
+    .ant-form-item-label {
+        label {
+            color: #fff;
+        }
+    }
+}

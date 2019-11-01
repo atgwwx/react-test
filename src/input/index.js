@@ -1,8 +1,10 @@
 import React from 'react';
 
-import { Input } from 'antd';
+import { Form, Input } from 'antd';
 
 function MyInput(props) {
-    return <div><Input {...props} className="form-item"/></div>
+    return <Form.Item label="文本框">
+            <Input {...props}/>
+        </Form.Item>
 }
 export default MyInput;
