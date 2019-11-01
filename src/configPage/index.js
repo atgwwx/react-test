@@ -34,39 +34,28 @@ class ConfigPage extends React.Component {
         this.components.push(component);
         this.setState({ components: this.components, currentType: type });
     }
-    menuHandleClick = e => {
-        console.log('click ', e);
-        let key = e.key;
-        this.setState({
-            currentMenuKey: key,
-        });
-        if (componentMap[key]) {
-            this.addComponent(key);
-        }
-    };
+    save = () => {
+
+    }
     render() {
         let { components, currentType, currentMenuKey } = this.state;
         let ConfigComponent = configComponentMap[currentType];
         return <Layout className="config-page">
-            <Header>
+            <Header className="header">
                 <div className="page-title">表单搭建平台</div>
-                <Menu
-                    theme="dark"
-                    mode="horizontal"
-                    onClick={this.menuHandleClick} selectedKeys={[currentMenuKey]}
-                    style={{ lineHeight: '64px' }}
-                >
-                </Menu>
+                <div className="right-content">
+                    <Button type="danger" onClick={this.save} >保存</Button>
+                </div>
             </Header>
             <Content>
                 <div className="content">
                     <div className="components-panel">
                         <div className="panel-title">组件</div>
                         <div className="components">
-                         <Button type="primary" onClick={()=>{this.addComponent('input')}} className="component-item">Input</Button>
-                         <Button type="primary" onClick={()=>{this.addComponent('select')}} className="component-item">Select</Button>
-                         <Button type="primary" className="component-item">TextArea</Button>
-                         <Button type="primary" className="component-item">Button</Button>
+                            <Button type="primary" onClick={() => { this.addComponent('input') }} className="component-item">Input</Button>
+                            <Button type="primary" onClick={() => { this.addComponent('select') }} className="component-item">Select</Button>
+                            <Button type="primary" className="component-item">TextArea</Button>
+                            <Button type="primary" className="component-item">Button</Button>
 
                         </div>
                     </div>
@@ -83,7 +72,7 @@ class ConfigPage extends React.Component {
             </Content>
             <Footer style={{ textAlign: 'center' }}>Club Factory</Footer>
         </Layout>
-         
+
     }
 }
 

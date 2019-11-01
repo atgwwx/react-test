@@ -1,12 +1,18 @@
 
 .config-page {
-    .page-title {
-        color: #fff;
-        font-size:18px;
-        font-weight: bold;
-        float: left;
-        margin-right: 30px;
+    .header {
+        .page-title {
+            color: #fff;
+            font-size:24px;
+            font-weight: bold;
+            float: left;
+            margin-right: 30px;
+        }
+        .right-content {
+            float: right;
+        }
     }
+    
     .content {
         display: flex;
         min-height: 540px;
