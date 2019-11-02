@@ -12,17 +12,9 @@ import {
     Button,
     AutoComplete,
 } from 'antd';
+import {formItemLayout} from '../../common/formlayout'
 const { TextArea } = Input;
 
-const formItemLayout = {
-    labelCol: {
-        sm: { span: 5},
-    },
-    wrapperCol: {
-        sm: { span: 16 },
-    },
-    labelAlign:'left'
-};
 class SelectConfig extends React.Component {
     constructor(props) {
         super(props)

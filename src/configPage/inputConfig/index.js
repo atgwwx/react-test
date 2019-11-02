@@ -1,50 +1,71 @@
 import React from 'react';
+import { formItemLayout } from '../../common/formlayout'
+import configData from '../configData'
+import CustomEvent from 'custom-event'
+
 import {
     Form,
     Input,
-    Tooltip,
-    Icon,
-    Cascader,
-    Select,
-    Row,
-    Col,
-    Checkbox,
-    Button,
-    AutoComplete,
+    Button
 } from 'antd';
-
-const formItemLayout = {
-    labelCol: {
-      xs: { span: 20 },
-      sm: { span: 5 },
-    },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 16 },
-    },
-    labelAlign:'left'
-  };
 
 class InputConfig extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
+    }
+    onSave = () => {
+        let values = this.props.form.getFieldsValue();
+        var event = new CustomEvent('configSubmit', {
+            detail: values
+        });
+        document.dispatchEvent(event);
+    }
+    componentDidMount() {
+        
+    }
+    componentDidUpdate(prevProps) {
+        if (prevProps.attribute.id !== this.props.attribute.id) {
+            this.setValues();
+        }
+    }
+    setValues() {
+        const {attribute={}} = this.props;
+        const data = attribute.data;
+        const { setFieldsValue,resetFields } = this.props.form;
+
+        if (data) {
+            setFieldsValue(data);
+        } else {
+            resetFields();
+        }
+       
     }
     render() {
-        return (<Form {...formItemLayout}>
+        const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
+        
+        return (<Form {...formItemLayout} >
             <Form.Item label="标题">
-                <Input />
+                {getFieldDecorator('label')(
+                    <Input />
+                )}
             </Form.Item>
             <Form.Item label="字段名称">
-                <Input />
-            </Form.Item>
-            <Form.Item label="默认值">
-                <Input />
+                {getFieldDecorator('name')(
+                    <Input />
+                )}            
             </Form.Item>
             <Form.Item label="占位符">
-                <Input />
+                {getFieldDecorator('placeholder')(
+                    <Input />
+                )}            
+            </Form.Item>
+            <Form.Item>
+                <Button type="primary" onClick={this.onSave}>
+                    保存
+                </Button>
             </Form.Item>
         </Form>)
     }
 }
-
-export default InputConfig;
+const WrapperInputConfig = Form.create({ name: 'inputConfig' })(InputConfig);
+export default WrapperInputConfig;

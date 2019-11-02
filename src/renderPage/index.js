@@ -3,7 +3,8 @@ import { Form } from 'antd';
 
 import formData from '../util/formData';
 import renderSDK from '../util/renderSDK';
-import { formItemLayout } from '../common/layout'
+import { formItemLayout } from '../common/formlayout'
+
 import './index.scss';
 
 function renderPage() {
