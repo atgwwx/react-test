@@ -18,8 +18,12 @@ class MyInput extends React.Component {
         document.dispatchEvent(event);
     }
     render () {
-        return <Form.Item label="文本框">
-        <Input {...this.props} onClick={this.onClick}/>
+        console.log('input-render',this.props.attribute)
+        let {attribute={}} = this.props;
+        let data = attribute.data || {};
+        let {label='文本框'} = data;
+        return <Form.Item label={label}>
+        <Input {...data} onClick={this.onClick}/>
     </Form.Item>
     }
 }

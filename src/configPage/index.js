@@ -46,8 +46,9 @@ class ConfigPage extends React.Component {
         document.addEventListener('configSubmit', (e) => {
             let currentId = configData.currentId;
             let attribute = configData[currentId];
-            attribute = Object.assign({}, attribute, {data:e.detail});
+            Object.assign(attribute, {data:e.detail});
             configData[currentId] = attribute;
+            this.forceUpdate();
         })
         document.addEventListener('setCurrentId', (e) => {
             let currentId = e.detail.currentId;
@@ -87,6 +88,7 @@ class ConfigPage extends React.Component {
                             <Form {...formItemLayout}>
                                 {components.map(obj => {
                                     let Component = obj.component;
+
                                     return <Component attribute={obj.attribute} />
                                 })}
                             </Form>
