@@ -19,22 +19,53 @@ class SelectConfig extends React.Component {
     constructor(props) {
         super(props)
     }
+    onSave = () => {
+        let values = this.props.form.getFieldsValue();
+        values.options = JSON.parse(values.options);
+        var event = new CustomEvent('configSubmit', {
+            detail: values
+        });
+        document.dispatchEvent(event);
+    }
+    componentDidUpdate(prevProps) {
+        if (prevProps.attribute.id !== this.props.attribute.id) {
+            this.setValues();
+        }
+    }
+    
     render() {
+        const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
+
         return (<Form {...formItemLayout}>
             <Form.Item label="标题">
-                <Input />
+                {getFieldDecorator('label')(
+                    <Input />
+                )}
             </Form.Item>
             <Form.Item label="字段名称">
-                <Input />
+                {getFieldDecorator('name')(
+                    <Input />
+                )}            
             </Form.Item>
             <Form.Item label="占位符">
-                <Input />
+                {getFieldDecorator('placeholder')(
+                    <Input />
+                )}            
             </Form.Item>
-            <Form.Item label="选项" className="xx">
+            <Form.Item label="选项">
+                {getFieldDecorator('options')(
                 <TextArea rows={4}/>
+                )}            
             </Form.Item>
+            <Form.Item>
+                <Button type="primary" onClick={this.onSave}>
+                    保存
+                </Button>
+            </Form.Item>
+            
         </Form>)
     }
 }
+const WrapperSelectConfig = Form.create({ name: 'selectConfig' })(SelectConfig);
 
-export default SelectConfig;
+export default WrapperSelectConfig;
