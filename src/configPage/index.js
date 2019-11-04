@@ -1,16 +1,18 @@
 import React from 'react';
-import { Button,Layout, Form } from 'antd';
+import { Button,Layout, Form ,Collapse, message} from 'antd';
 
 import Input from '../input';
 import Select from '../select';
 import './index.scss'
 import InputConfig from './inputConfig'
 import SelectConfig from './selectConfig'
+import ConfigPanel from './configPanel'
 import configData from './configData';
 import { formItemLayout } from '../common/formlayout'
 const uuidv1 = require('uuid/v1');
 
 const { Header, Content, Footer } = Layout;
+const { Panel } = Collapse;
 
 const componentMap = {
     'input': Input,
@@ -21,6 +23,11 @@ const configComponentMap = {
     'input': InputConfig,
     'select': SelectConfig
 }
+const customPanelStyle = {
+    background: 'rgb(28, 31, 53)',
+    border: 0,
+    overflow: 'hidden',
+  };
 class ConfigPage extends React.Component {
     constructor(props) {
         super(props)
@@ -50,28 +57,51 @@ class ConfigPage extends React.Component {
             Object.assign(attribute, {data:e.detail});
             configData[currentId] = attribute;
             this.forceUpdate();
+            message.success('保存成功')
         })
         document.addEventListener('setCurrentId', (e) => {
             let currentId = e.detail.currentId;
             configData.currentId = e.detail.currentId;
             let currentType = configData[currentId].type;
             this.setState({currentType});
+
+        })
+        document.addEventListener('setPageData', (e) => {
+            let detail = e.detail;
+            configData.pageName = detail.pageName;
+            configData.submitUrl = detail.submitUrl;
+            message.success('保存成功')
         })
     }
+    /**
+     * 保存页面数据
+     */
     save = () => {
-        let saveData = configData.components.map(id => {
+        let components = configData.components.map(id => {
             let obj = configData[id];
-            return {
-                type: obj.type,
-                attribute:obj
+            if (obj.data) {
+                return {
+                    type: obj.type,
+                    attribute:obj
+                }
+            }else {
+                return null;
             }
         });
+        //过滤掉没有配置的组件
+        components = components.filter(obj => obj);
         //TODO, 临时保存在本地
-        localStorage.setItem('configData', JSON.stringify(saveData));
+        let newConfigData = {
+            pageName:configData.pageName,
+            submitUrl:configData.submitUrl,
+            components
+        }
+        localStorage.setItem('configData', JSON.stringify(newConfigData));
+        message.success('保存成功')
     }
     render() {
         let { components, currentType } = this.state;
-        let CurrentConfigComponent = configComponentMap[currentType];
+        let currentConfigComponent = configComponentMap[currentType];
         let currentConfigData = configData[configData.currentId];
         
         return <Layout className="config-page">
@@ -102,10 +132,7 @@ class ConfigPage extends React.Component {
                             </Form>
                         </div>
                     </div>
-                    <div className="configuration-panel">
-                        <div className="panel-title">组件配置：{currentType}</div>
-                        {CurrentConfigComponent ? <CurrentConfigComponent attribute={currentConfigData}/> : null}
-                    </div>
+                    <ConfigPanel configComponent={currentConfigComponent} configData={currentConfigData}/>
                 </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}>Club Factory</Footer>

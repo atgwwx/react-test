@@ -45,6 +45,9 @@
             width:360px;
             background: rgb(28, 31, 53);
             padding: 0 20px;
+            .ant-collapse-header {
+                color:#fff !important;
+            }
         }
     }
     .panel-title {

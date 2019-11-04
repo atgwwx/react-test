@@ -1,5 +1,7 @@
 
 let configData = {
+    pageName:'',
+    submitUrl:'',
     components:[]
 };
 
