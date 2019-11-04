@@ -22,7 +22,7 @@ class SelectConfig extends React.Component {
     onSave = () => {
         let values = this.props.form.getFieldsValue();
         values.options = JSON.parse(values.options);
-        var event = new CustomEvent('configSubmit', {
+        var event = new CustomEvent('setComponentData', {
             detail: values
         });
         document.dispatchEvent(event);
@@ -32,7 +32,16 @@ class SelectConfig extends React.Component {
             this.setValues();
         }
     }
-    
+    setValues() {
+        const {attribute={}} = this.props;
+        const data = attribute.data;
+        const { setFieldsValue,resetFields } = this.props.form;
+        if (data) {
+            setFieldsValue(data);
+        } else {
+            resetFields();
+        }
+    }
     render() {
         const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
 

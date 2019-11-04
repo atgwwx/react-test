@@ -51,7 +51,7 @@ class ConfigPage extends React.Component {
         configData.components.push(uuid);
     }
     onComponentConfigSubmit() {
-        document.addEventListener('configSubmit', (e) => {
+        document.addEventListener('setComponentData', (e) => {
             let currentId = configData.currentId;
             let attribute = configData[currentId];
             Object.assign(attribute, {data:e.detail});
@@ -64,7 +64,6 @@ class ConfigPage extends React.Component {
             configData.currentId = e.detail.currentId;
             let currentType = configData[currentId].type;
             this.setState({currentType});
-
         })
         document.addEventListener('setPageData', (e) => {
             let detail = e.detail;

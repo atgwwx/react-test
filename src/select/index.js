@@ -21,7 +21,7 @@ class MySelect extends React.Component{
         let { attribute = {} } = this.props;
         let data = attribute.data || {};
         let { label = '文本框',options=[], placeholder} = data;        
-        return <Form.Item label={label} ><Select placeholder={placeholder} onClick={this.onClick}>
+        return <Form.Item label={label} ><Select placeholder={placeholder} onMouseEnter={this.onClick}>
             {options.map((item, index) => {
                 return <Option value={item.value} key={index}>{item.name}</Option>
             })}

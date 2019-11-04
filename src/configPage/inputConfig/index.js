@@ -15,13 +15,10 @@ class InputConfig extends React.Component {
     }
     onSave = () => {
         let values = this.props.form.getFieldsValue();
-        var event = new CustomEvent('configSubmit', {
+        var event = new CustomEvent('setComponentData', {
             detail: values
         });
         document.dispatchEvent(event);
-    }
-    componentDidMount() {
-        
     }
     componentDidUpdate(prevProps) {
         if (prevProps.attribute.id !== this.props.attribute.id) {
