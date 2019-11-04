@@ -3,6 +3,8 @@ import { Form } from 'antd';
 
 import formData from '../util/formData';
 import renderSDK from '../util/renderSDK';
+import RenderForm from '../util/renderForm';
+
 import { formItemLayout } from '../common/formlayout'
 
 import './index.scss';
@@ -14,7 +16,8 @@ let renderData = {
 function renderPage() {
     return <div className="render-page">
         <div className="form-wrapper">
-            <Form {...formItemLayout}>{renderSDK(renderData)}</Form>
+            <RenderForm data={renderData} />
+            {/* <Form {...formItemLayout}>{renderSDK(renderData)}</Form> */}
         </div>
     </div>
 }

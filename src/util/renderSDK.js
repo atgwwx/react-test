@@ -8,9 +8,12 @@ const componentsMap = {
 }
 function sdk(data) {
     let components = data.components;
+
     return components.map((item, index) => {
         let Component = componentsMap[item.type];
         return <Component attribute={item.attribute} key={index}/>
     });
 }
+
+
 export default sdk;

@@ -97,7 +97,6 @@ class ConfigPage extends React.Component {
                             <Form {...formItemLayout}>
                                 {components.map(obj => {
                                     let Component = obj.component;
-
                                     return <Component attribute={obj.attribute} />
                                 })}
                             </Form>

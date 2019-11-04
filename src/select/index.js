@@ -8,6 +8,7 @@ class MySelect extends React.Component{
         super(props);
     }
     onClick = () => {
+        console.log('select onclick')
         let { id } = this.props.attribute;
         var event = new CustomEvent('setCurrentId', {
             detail: {
@@ -20,7 +21,7 @@ class MySelect extends React.Component{
         let { attribute = {} } = this.props;
         let data = attribute.data || {};
         let { label = '文本框',options=[], placeholder} = data;        
-        return <Form.Item label={label} ><Select onClick={this.onClick} placeholder={placeholder}>
+        return <Form.Item label={label} ><Select placeholder={placeholder} onClick={this.onClick}>
             {options.map((item, index) => {
                 return <Option value={item.value} key={index}>{item.name}</Option>
             })}

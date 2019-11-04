@@ -8,6 +8,7 @@ class MyInput extends React.Component {
         super(props)
     }
     onClick = () => {
+        console.log('input onClick')
         let { id } = this.props.attribute;
         var event = new CustomEvent('setCurrentId', {
             detail: {
@@ -17,6 +18,7 @@ class MyInput extends React.Component {
         document.dispatchEvent(event);
     }
     render() {
+        
         let { attribute = {} } = this.props;
         let data = attribute.data || {};
         let { label = '文本框' } = data;
