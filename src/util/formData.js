@@ -1,24 +1,32 @@
 let configData = {
     "components":[{
-        "tag":"input",
+        "type":"input",
         "attribute":{
-            placeholder:"用户名"
+            id:'',
+            data:{
+                placeholder:"用户名"
+            }
         }
     },{
-        "tag":"input",
+        "type":"input",
         "attribute":{
-            placeholder:"年龄"
+            data:{
+                placeholder:"年龄"
+            }
         }
     },{
-        "tag":"select",
+        "type":"select",
         "attribute":{
-            "options":[{
-                value:'apple', name:'苹果',
-            },{
-                value:'pineapple', name:'菠萝',
-            },{
-                value:'banana', name:'香蕉',
-            }]
+            data:{
+                "options":[{
+                    value:'apple', name:'苹果',
+                },{
+                    value:'pineapple', name:'菠萝',
+                },{
+                    value:'banana', name:'香蕉',
+                }]
+            }
+
         }
     }]
 }

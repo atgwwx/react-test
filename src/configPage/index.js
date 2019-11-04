@@ -41,6 +41,7 @@ class ConfigPage extends React.Component {
         this.setState({ components: this.components, currentType: type });
         configData[uuid] = attribute;
         configData.currentId = uuid;
+        configData.components.push(uuid);
     }
     onComponentConfigSubmit() {
         document.addEventListener('configSubmit', (e) => {
@@ -58,7 +59,15 @@ class ConfigPage extends React.Component {
         })
     }
     save = () => {
-
+        let saveData = configData.components.map(id => {
+            let obj = configData[id];
+            return {
+                type: obj.type,
+                attribute:obj
+            }
+        });
+        //TODO, 临时保存在本地
+        localStorage.setItem('configData', JSON.stringify(saveData));
     }
     render() {
         let { components, currentType } = this.state;

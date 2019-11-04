@@ -7,10 +7,14 @@ import { formItemLayout } from '../common/formlayout'
 
 import './index.scss';
 
+let configData = localStorage.getItem('configData');
+let renderData = {
+    components:JSON.parse(configData)
+}
 function renderPage() {
     return <div className="render-page">
         <div className="form-wrapper">
-            <Form {...formItemLayout}>{renderSDK(formData)}</Form>
+            <Form {...formItemLayout}>{renderSDK(renderData)}</Form>
         </div>
     </div>
 }
