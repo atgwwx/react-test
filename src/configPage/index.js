@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button,Layout, Form , message} from 'antd';
+import { Button,Layout,message} from 'antd';
 
 import InputConfig from './inputConfig'
 import SelectConfig from './selectConfig'
@@ -18,12 +18,9 @@ const configComponentMap = {
 class ConfigPage extends React.Component {
     constructor(props) {
         super(props)
-        this.components = []
         this.state = {
             components: [],
             currentType: '',
-            configComponent: null,
-            currentMenuKey: 'home'
         }
         this.initListener();
     }
@@ -116,9 +113,7 @@ class ConfigPage extends React.Component {
             </Content>
             <Footer style={{ textAlign: 'center' }}>Club Factory</Footer>
         </Layout>
-
     }
 }
-
 
 export default ConfigPage;
