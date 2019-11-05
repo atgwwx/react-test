@@ -1,23 +1,16 @@
 import React from 'react';
 import { Button,Layout, Form , message} from 'antd';
 
-import Input from '../input';
-import Select from '../select';
-import './index.scss'
 import InputConfig from './inputConfig'
 import SelectConfig from './selectConfig'
+import DisplayPanel from './displayPanel'
 import ConfigPanel from './configPanel'
 import configData from './configData';
-import { formItemLayout } from '../common/formlayout'
-const uuidv1 = require('uuid/v1');
+import uuidv1 from 'uuid/v1';
+import './index.scss'
 
 const { Header, Content, Footer } = Layout;
 
-const componentMap = {
-    'input': Input,
-    'select': Select,
-    'button': Button
-}
 const configComponentMap = {
     'input': InputConfig,
     'select': SelectConfig
@@ -32,19 +25,20 @@ class ConfigPage extends React.Component {
             configComponent: null,
             currentMenuKey: 'home'
         }
-        this.onComponentConfigSubmit();
+        this.initListener();
     }
     addComponent = (type) => {
-        let component = componentMap[type];
         let uuid = uuidv1();
         let attribute = {id:uuid, type};
-        this.components.push({attribute, component});
-        this.setState({ components: this.components, currentType: type });
+        let components = this.state.components;
+        components.push({attribute});
+        this.setState({ components: components, currentType: type });
         configData[uuid] = attribute;
         configData.currentId = uuid;
         configData.components.push(uuid);
     }
-    onComponentConfigSubmit() {
+    initListener() {
+        //监听组件配置
         document.addEventListener('setComponentData', (e) => {
             let currentId = configData.currentId;
             let attribute = configData[currentId];
@@ -53,12 +47,14 @@ class ConfigPage extends React.Component {
             this.forceUpdate();
             message.success('保存成功')
         })
+        //监听组件切换
         document.addEventListener('setCurrentId', (e) => {
             let currentId = e.detail.currentId;
             configData.currentId = e.detail.currentId;
             let currentType = configData[currentId].type;
             this.setState({currentType});
         })
+        //监听全局配置
         document.addEventListener('setPageData', (e) => {
             let detail = e.detail;
             configData.pageName = detail.pageName;
@@ -67,7 +63,7 @@ class ConfigPage extends React.Component {
         })
     }
     /**
-     * 保存页面数据
+     * 保存页面整体数据（全局配置&组件配置）
      */
     save = () => {
         let components = configData.components.map(id => {
@@ -114,17 +110,7 @@ class ConfigPage extends React.Component {
                             <Button type="primary" className="component-item">TextArea</Button>
                         </div>
                     </div>
-                    <div className="display-panel">
-                        <div className="panel-title">预览区域</div>
-                        <div className="form-wrapper">
-                            <Form {...formItemLayout}>
-                                {components.map(obj => {
-                                    let Component = obj.component;
-                                    return <Component attribute={obj.attribute} />
-                                })}
-                            </Form>
-                        </div>
-                    </div>
+                    <DisplayPanel components={components}/>
                     <ConfigPanel configComponent={currentConfigComponent} configData={currentConfigData}/>
                 </div>
             </Content>

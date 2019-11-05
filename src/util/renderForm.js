@@ -1,22 +1,8 @@
 import React from 'react';
 import { formItemLayout } from '../common/formlayout'
 import { Form, Select, Input, Button} from 'antd';
+import renderComponent from './renderComponent';
 
-const {Option} = Select;
-
-function renderComponent(attribute) {
-    const {data, type} = attribute;
-    if (type === 'input') {
-        return <Input {...data} />
-    } else if (type === 'select') {
-        let options = data.options;
-        return <Select {...data}>
-        {options.map((item, index) => {
-            return <Option value={item.value} key={index}>{item.name}</Option>
-        })}
-        </Select>
-    }
-}
 class RenderForm extends React.Component {
     constructor(props) {
         super(props);
@@ -30,10 +16,10 @@ class RenderForm extends React.Component {
         const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
         let {components, pageName} = this.props.data;
         
-        let componentsTpl = components.map(item =>{
+        let componentsTpl = components.map((item,index )=>{
             let attribute = item.attribute;
             let data = attribute.data;
-            return <Form.Item label={data.label}>
+            return <Form.Item label={data.label} key={index}>
                 {getFieldDecorator(data.name)(
                     renderComponent(attribute)
                 )}

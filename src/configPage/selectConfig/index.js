@@ -21,7 +21,6 @@ class SelectConfig extends React.Component {
     }
     onSave = () => {
         let values = this.props.form.getFieldsValue();
-        values.options = JSON.parse(values.options);
         var event = new CustomEvent('setComponentData', {
             detail: values
         });
