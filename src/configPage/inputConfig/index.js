@@ -20,6 +20,9 @@ class InputConfig extends React.Component {
         });
         document.dispatchEvent(event);
     }
+    componentDidMount(){
+        this.setValues();
+    }
     componentDidUpdate(prevProps) {
         if (prevProps.attribute.id !== this.props.attribute.id) {
             this.setValues();

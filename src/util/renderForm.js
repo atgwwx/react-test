@@ -1,10 +1,21 @@
 import React from 'react';
 import { formItemLayout } from '../common/formlayout'
-import { Select, Form ,Input, Button} from 'antd';
+import { Form, Select, Input, Button} from 'antd';
 
-const componentsMap = {
-    "input":Input,
-    "select":Select
+const {Option} = Select;
+
+function renderComponent(attribute) {
+    const {data, type} = attribute;
+    if (type === 'input') {
+        return <Input {...data} />
+    } else if (type === 'select') {
+        let options = data.options;
+        return <Select {...data}>
+        {options.map((item, index) => {
+            return <Option value={item.value} key={index}>{item.name}</Option>
+        })}
+        </Select>
+    }
 }
 class RenderForm extends React.Component {
     constructor(props) {
@@ -20,12 +31,11 @@ class RenderForm extends React.Component {
         let {components, pageName} = this.props.data;
         
         let componentsTpl = components.map(item =>{
-            let Component = componentsMap[item.type];
             let attribute = item.attribute;
             let data = attribute.data;
             return <Form.Item label={data.label}>
                 {getFieldDecorator(data.name)(
-                    <Component {...data}/>
+                    renderComponent(attribute)
                 )}
             </Form.Item>
         })

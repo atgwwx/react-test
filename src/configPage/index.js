@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button,Layout, Form ,Collapse, message} from 'antd';
+import { Button,Layout, Form , message} from 'antd';
 
 import Input from '../input';
 import Select from '../select';
@@ -12,7 +12,6 @@ import { formItemLayout } from '../common/formlayout'
 const uuidv1 = require('uuid/v1');
 
 const { Header, Content, Footer } = Layout;
-const { Panel } = Collapse;
 
 const componentMap = {
     'input': Input,
@@ -23,11 +22,6 @@ const configComponentMap = {
     'input': InputConfig,
     'select': SelectConfig
 }
-const customPanelStyle = {
-    background: 'rgb(28, 31, 53)',
-    border: 0,
-    overflow: 'hidden',
-  };
 class ConfigPage extends React.Component {
     constructor(props) {
         super(props)
@@ -83,7 +77,7 @@ class ConfigPage extends React.Component {
                     type: obj.type,
                     attribute:obj
                 }
-            }else {
+            } else {
                 return null;
             }
         });
