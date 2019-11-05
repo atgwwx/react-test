@@ -25,9 +25,9 @@ class ConfigPage extends React.Component {
         this.initListener();
     }
     addComponent = (type) => {
-        let uuid = uuidv1();
-        let attribute = {id:uuid, type};
-        let components = this.state.components;
+        const uuid = uuidv1();
+        const attribute = {id:uuid, type};
+        const components = this.state.components;
         components.push({attribute});
         this.setState({ components: components, currentType: type });
         configData[uuid] = attribute;
@@ -37,8 +37,8 @@ class ConfigPage extends React.Component {
     initListener() {
         //监听组件配置
         document.addEventListener('setComponentData', (e) => {
-            let currentId = configData.currentId;
-            let attribute = configData[currentId];
+            const currentId = configData.currentId;
+            const attribute = configData[currentId];
             Object.assign(attribute, {data:e.detail});
             configData[currentId] = attribute;
             this.forceUpdate();
@@ -46,14 +46,14 @@ class ConfigPage extends React.Component {
         })
         //监听组件切换
         document.addEventListener('setCurrentId', (e) => {
-            let currentId = e.detail.currentId;
+            const currentId = e.detail.currentId;
             configData.currentId = e.detail.currentId;
-            let currentType = configData[currentId].type;
+            const currentType = configData[currentId].type;
             this.setState({currentType});
         })
         //监听全局配置
         document.addEventListener('setPageData', (e) => {
-            let detail = e.detail;
+            const detail = e.detail;
             configData.pageName = detail.pageName;
             configData.submitUrl = detail.submitUrl;
             message.success('保存成功')
@@ -63,8 +63,8 @@ class ConfigPage extends React.Component {
      * 保存页面整体数据（全局配置&组件配置）
      */
     save = () => {
-        let components = configData.components.map(id => {
-            let obj = configData[id];
+        const components = configData.components.map(id => {
+            const obj = configData[id];
             if (obj.data) {
                 return {
                     type: obj.type,
@@ -77,7 +77,7 @@ class ConfigPage extends React.Component {
         //过滤掉没有配置的组件
         components = components.filter(obj => obj);
         //TODO, 临时保存在本地
-        let newConfigData = {
+        const newConfigData = {
             pageName:configData.pageName,
             submitUrl:configData.submitUrl,
             components
@@ -86,9 +86,9 @@ class ConfigPage extends React.Component {
         message.success('保存成功')
     }
     render() {
-        let { components, currentType } = this.state;
-        let currentConfigComponent = configComponentMap[currentType];
-        let currentConfigData = configData[configData.currentId];
+        const { components, currentType } = this.state;
+        const currentConfigComponent = configComponentMap[currentType];
+        const currentConfigData = configData[configData.currentId];
         
         return <Layout className="config-page">
             <Header className="header">

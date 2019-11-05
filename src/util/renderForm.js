@@ -1,6 +1,6 @@
 import React from 'react';
 import { formItemLayout } from '../common/formlayout'
-import { Form, Select, Input, Button} from 'antd';
+import { Form, Select, Input, Button } from 'antd';
 import renderComponent from './renderComponent';
 
 class RenderForm extends React.Component {
@@ -8,17 +8,17 @@ class RenderForm extends React.Component {
         super(props);
     }
     onSave = () => {
-        let values = this.props.form.getFieldsValue();
-        let {submitUrl} = this.props.data;
+        const values = this.props.form.getFieldsValue();
+        const { submitUrl } = this.props.data;
         console.log(values, submitUrl);
     }
     render() {
         const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
-        let {components, pageName} = this.props.data;
-        
-        let componentsTpl = components.map((item,index )=>{
-            let attribute = item.attribute;
-            let data = attribute.data;
+        const { components, pageName } = this.props.data;
+
+        const componentsTpl = components.map((item, index) => {
+            const attribute = item.attribute;
+            const data = attribute.data;
             return <Form.Item label={data.label} key={index}>
                 {getFieldDecorator(data.name)(
                     renderComponent(attribute)

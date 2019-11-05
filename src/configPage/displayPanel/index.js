@@ -8,7 +8,7 @@ class DisplayPanel extends React.Component {
         super(props)
     }
     onClick = (id) => {
-        var event = new CustomEvent('setCurrentId', {
+        const event = new CustomEvent('setCurrentId', {
             detail: {
                 currentId: id
             }
@@ -16,7 +16,7 @@ class DisplayPanel extends React.Component {
         document.dispatchEvent(event);
     }
     render() {
-        let components = this.props.components;
+        const components = this.props.components;
 
         return <div className="display-panel">
             <div className="panel-title">预览区域</div>

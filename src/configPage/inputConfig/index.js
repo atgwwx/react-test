@@ -14,7 +14,7 @@ class InputConfig extends React.Component {
         super(props);
     }
     onSave = () => {
-        let values = this.props.form.getFieldsValue();
+        const values = this.props.form.getFieldsValue();
         var event = new CustomEvent('setComponentData', {
             detail: values
         });

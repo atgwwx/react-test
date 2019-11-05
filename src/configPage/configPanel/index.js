@@ -14,12 +14,11 @@ class ConfigPanel extends React.Component {
         super(props);
     }
     onSave = () => {
-        let values = this.props.form.getFieldsValue();
-        var event = new CustomEvent('setPageData', {
+        const values = this.props.form.getFieldsValue();
+        const event = new CustomEvent('setPageData', {
             detail: values
         });
         document.dispatchEvent(event);
-        console.log(values)
     }
     render() {
         const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;

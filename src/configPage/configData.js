@@ -1,5 +1,5 @@
 
-let configData = {
+const configData = {
     pageName:'',
     submitUrl:'',
     components:[]

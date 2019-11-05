@@ -1,4 +1,4 @@
-let configData = {
+const configData = {
     "components":[{
         "type":"input",
         "attribute":{
