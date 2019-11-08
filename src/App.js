@@ -4,6 +4,9 @@ import './App.css';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import RenderPage from './renderPage'
 import ConfigPage from './configPage'
+import InterfaceConfigPage from './interfaceConfig/configPage'
+import InterfaceRenderPage from './interfaceConfig/renderPage'
+import Home from './home'
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,13 +19,13 @@ function App() {
       <Router>
         <Switch>
           <Route path="/config">
-            <ConfigPage />
+            <InterfaceConfigPage />
           </Route>
           <Route path="/render">
-            <RenderPage />
+            <InterfaceRenderPage />
           </Route>
           <Route path="/">
-            <div>hello world</div>
+            <Home />
           </Route>
         </Switch>
       </Router>
