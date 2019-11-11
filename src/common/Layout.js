@@ -25,11 +25,11 @@ class ConfigPage extends React.Component {
                 <Sider width={200} style={{ background: '#fff' }}>
                     <Menu
                         mode="inline"
-                        defaultOpenKeys={['sub2']}
+                        defaultOpenKeys={['product']}
                         style={{ height: '100%', borderRight: 0 }}
                     >
                         <SubMenu
-                            key="sub1"
+                            key="product"
                             title={
                                 <span>
                                     <Icon type="user" />
@@ -37,10 +37,34 @@ class ConfigPage extends React.Component {
                                 </span>
                             }
                         >
-                            <Menu.Item key="1"><Link to="interfaceRender">商品上货</Link></Menu.Item>
+                            <Menu.Item key="product1"><Link to="interfaceRender">商品上货</Link></Menu.Item>
+                            <Menu.Item key="product2"><Link to="interfaceRender">商品打标</Link></Menu.Item>
                         </SubMenu>
                         <SubMenu
-                            key="sub2"
+                            key="wms"
+                            title={
+                                <span>
+                                    <Icon type="user" />
+                                    WMS
+                                </span>
+                            }
+                        >
+                            <Menu.Item key="wms1"><Link to="interfaceRender">创建入库单</Link></Menu.Item>
+                            <Menu.Item key="wms2"><Link to="interfaceRender">创建出库单</Link></Menu.Item>
+                        </SubMenu>
+                        <SubMenu
+                            key="pms"
+                            title={
+                                <span>
+                                    <Icon type="user" />
+                                    PMS
+                                </span>
+                            }
+                        >
+                            <Menu.Item key="pms1"><Link to="interfaceRender">创建采购单</Link></Menu.Item>
+                        </SubMenu>
+                        <SubMenu
+                            key="config"
                             title={
                                 <span>
                                     <Icon type="user" />
