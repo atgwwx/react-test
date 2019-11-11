@@ -1,10 +1,5 @@
 import React from 'react';
-import { Button, Layout,Menu,Icon,Breadcrumb, Form, Input, Collapse } from 'antd';
-import InterfaceConfig from '../interfaceConfig/configPage'
 import './index.scss'
-
-const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
 
 class ConfigPage extends React.Component {
     constructor(props) {

@@ -1,26 +1,20 @@
 import React from 'react';
-import { Button, Layout, Menu, Icon, Breadcrumb, Form, Input, Collapse } from 'antd';
-import formItemLayout from '../../common/formlayout'
-import BaseConfig from './baseConfig'
+import { Button, Descriptions, Collapse} from 'antd';
 
 import AceEditor from 'react-ace';
 
 import "ace-builds/src-noconflict/mode-json";
 import "ace-builds/src-noconflict/theme-github";
 
-import './index.scss'
-
-const { TextArea } = Input;
 const { Panel } = Collapse;
 
 const customPanelStyle = {
     border: 0,
     overflow: 'hidden',
 };
-
-class ConfigPage extends React.Component {
+class Home extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             editorData: JSON.stringify({
                 "name": "zhangsan",
@@ -29,28 +23,30 @@ class ConfigPage extends React.Component {
         }
     }
     onSave = () => {
-        let values = this.baseForm.props.form.getFieldsValue();
         let obj = {
-            requestParams: this.requestParams,
-            comment: this.comment,
-            ...values
+            requestParams: this.state.editorData,
         }
         console.log(obj)
     }
     onAceEditorChange = (value) => {
         this.setState({ editorData: value })
     }
-    onCommentChange = (e) => {
-        this.comment = e.target.value;
-    }
     render() {
         const { editorData } = this.state;
-        return <div className="config">
-            <Collapse defaultActiveKey={['1', '2', '3']} bordered={false}>
-                <Panel header="基础配置" key="1" style={customPanelStyle}>
-                    <BaseConfig wrappedComponentRef={(form) => this.baseForm = form} />
+
+        return <div className="render">
+            <div style={{float:'right'}}>                    <Button type="primary" onClick={this.onSave} style={{ width: '100px' }}>
+                        运行
+                </Button></div>
+            <Collapse defaultActiveKey={['1', '2', '4']} bordered={false}>
+                <Panel header="基本信息" key="1" style={customPanelStyle}>
+                    <Descriptions title="">
+                        <Descriptions.Item label="接口名称">创建商品，包括Seller和自营</Descriptions.Item>
+                        <Descriptions.Item label="请求类型">POST</Descriptions.Item>
+                        <Descriptions.Item label="请求URL">/wms/createItem/</Descriptions.Item>
+                    </Descriptions>
                 </Panel>
-                <Panel header="请求参数配置" key="2" style={customPanelStyle}>
+                <Panel header="请求参数" key="2" style={customPanelStyle}>
                     <AceEditor
                         mode="json"
                         theme="github"
@@ -64,16 +60,15 @@ class ConfigPage extends React.Component {
                     />
                 </Panel>
                 <Panel header="备注" key="3" style={customPanelStyle}>
-                    <TextArea rows={4} onChange={this.onCommentChange} />
+                    <div></div>
                 </Panel>
-                <div className="bottom-wrapper">
-                    <Button type="primary" onClick={this.onSave} style={{ width: '100px' }}>
-                        保存
-                </Button>
-                </div>
+                <Panel header="结果" key="4" style={customPanelStyle}>
+                    <div></div>
+                </Panel>
+                
             </Collapse>
         </div>
     }
 }
 
-export default ConfigPage;
+export default Home;
