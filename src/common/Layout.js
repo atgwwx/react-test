@@ -48,7 +48,7 @@ class ConfigPage extends React.Component {
                                 </span>
                             }
                         >
-                            <Menu.Item key="11"><Link to="interfaceConfig">interface配置</Link></Menu.Item>
+                            <Menu.Item key="11"><Link to="interfaceConfig">新增接口</Link></Menu.Item>
                         </SubMenu>
                     </Menu>
                 </Sider>
