@@ -4,6 +4,7 @@ import './App.css';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import InterfaceConfigPage from './pages/interfaceConfig/configPage'
 import InterfaceRenderPage from './pages/interfaceConfig/renderPage'
+import List from './pages/interfaceConfig/list'
 import AppLayout from './common/AppLayout'
 import Home from './pages/home'
 import {
@@ -23,6 +24,9 @@ function App() {
             </Route>
             <Route path="/interfaceRender">
               <InterfaceRenderPage />
+            </Route>
+            <Route path="/list">
+              <List />
             </Route>
             <Route path="/">
               <Home />

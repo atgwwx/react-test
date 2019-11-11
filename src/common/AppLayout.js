@@ -68,11 +68,11 @@ class ConfigPage extends React.Component {
                             title={
                                 <span>
                                     <Icon type="user" />
-                                    配置
+                                    管理
                                 </span>
                             }
                         >
-                            <Menu.Item key="11"><Link to="interfaceConfig">新增接口</Link></Menu.Item>
+                            <Menu.Item key="11"><Link to="list">工具</Link></Menu.Item>
                         </SubMenu>
                     </Menu>
                 </Sider>
