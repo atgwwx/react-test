@@ -6,10 +6,11 @@ import { Button, Form, Input, Descriptions, Collapse } from 'antd';
 import { formItemLayout } from '../../../common/formlayout'
 
 function SearchForm(props) {
-    
-    const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = props.form;
+    const { getFieldDecorator } = props.form;
     const search = () => {
-        props.setResult([{ name: "接口" }])
+        //test
+        let result = [{ name: "新增商品", project:'商品', author:"小刘"}];
+        props.setResult(result);
     }
     return <div className="">
         <Form layout="inline" {...formItemLayout} >

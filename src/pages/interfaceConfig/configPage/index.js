@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Layout, Menu, Icon, Breadcrumb, Form, Input, Collapse } from 'antd';
 import BaseConfig from './baseConfig'
+import HeadersConfig from './headersConfig'
 
 import AceEditor from 'react-ace';
 
@@ -49,7 +50,10 @@ class ConfigPage extends React.Component {
                 <Panel header="基础配置" key="1" style={customPanelStyle}>
                     <BaseConfig wrappedComponentRef={(form) => this.baseForm = form} />
                 </Panel>
-                <Panel header="请求参数配置" key="2" style={customPanelStyle}>
+                <Panel header="Headers" key="2" style={customPanelStyle}>
+                    <HeadersConfig wrappedComponentRef={(form) => this.baseForm = form} />
+                </Panel>
+                <Panel header="请求参数配置" key="3" style={customPanelStyle}>
                     <AceEditor
                         mode="json"
                         theme="github"
@@ -62,7 +66,7 @@ class ConfigPage extends React.Component {
                         editorProps={{ $blockScrolling: true }}
                     />
                 </Panel>
-                <Panel header="备注" key="3" style={customPanelStyle}>
+                <Panel header="备注" key="4" style={customPanelStyle}>
                     <TextArea rows={4} onChange={this.onCommentChange} />
                 </Panel>
                 <div className="bottom-wrapper">
